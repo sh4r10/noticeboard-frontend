@@ -11,7 +11,7 @@ import EditNote from "./EditNote";
 
 function App() {
   const [loggedIn, setLogin] = useState(sessionStorage.getItem("token") ? true : false);
-  const Host = "http://178.128.253.173:5000";
+  const Host = "https://backend.sh4r10.design";
 
   return (
     <Router>
