@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import {Link} from "react-router-dom";
 import axios from "axios";
 
 class NotesView extends Component{
@@ -36,14 +35,14 @@ class NotesView extends Component{
 
 const Note = props => {
     return(
-        <Link to={props.loggedIn ? `/edit/${props.note._id}` : ""} className="list-group-item list-group-item-action">
+        <a href={props.loggedIn ? `/edit/${props.note._id}` : "javascript:void(0)"} className="list-group-item list-group-item-action">
             <div className="d-flex w-100 justify-content-between">
             <h5 className="mb-1">{props.note.heading}</h5>
             <small className="text-muted">{props.note.updatedAt.substring(0,10)}</small>
             </div>
             <p className="mb-1">{props.note.message}</p>
             <small className="text-muted">{props.note.manager}</small>
-        </Link>
+        </a>
     )
 }
 
