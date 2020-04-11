@@ -11,7 +11,7 @@ import EditNote from "./EditNote";
 
 function App() {
   const [loggedIn, setLogin] = useState(sessionStorage.getItem("token") ? true : false);
-  const Host = "http://localhost:5000"
+  const Host = "http://178.128.253.173:5000";
 
   return (
     <Router>
@@ -22,7 +22,7 @@ function App() {
         <Route path="/create" exact render={()=> <CreateNote setLogin={setLogin} host={Host}/>}/>
         <Route path="/edit/:id" render={()=> <EditNote setLogin={setLogin} host={Host}/>}/>
       </div>
-      <footer><p>Created By <a href="https://github.com/sh4r10" target="_blank">sh4r10</a>. All Rights Reserved.</p></footer>
+      <footer><p>Created By <a href="https://github.com/sh4r10" rel="noopener noreferrer" target="_blank">sh4r10</a>. All Rights Reserved.</p></footer>
     </Router>
   );
 }

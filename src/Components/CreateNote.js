@@ -36,7 +36,7 @@ class CreateNote extends Component{
                 window.location = "/"
             })
             .catch((err) => {
-                if(err.response.status == 403){
+                if(err.response.status === 403){
                     sessionStorage.removeItem("token");
                     window.location = "/login"; 
                 }
