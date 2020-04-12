@@ -1,11 +1,15 @@
 self.addEventListener('push', async function(event) {
   console.log('Received a push message', event);
-  var title = 'Yay a message.';
-  var body = 'We have received a push message.';
+  const data = event.data.json();
+  console.log(data);
+  const title = data.title;
+  const body = data.title;
+  const icon = `${process.env.PUBLIC_URL}/mb-logo.png`;
 
   event.waitUntil(
     self.registration.showNotification(title, {
       body: body,
+      icon: icon
     })
   );
 });
