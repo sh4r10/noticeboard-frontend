@@ -11,8 +11,8 @@ import EditNote from "./EditNote";
 
 function App(props) {
   const [loggedIn, setLogin] = useState(sessionStorage.getItem("token") ? true : false);
-  // const Host = "https://backend.sh4r10.design";
-  const Host = "http://localhost:5000";
+  const Host = "https://backend.sh4r10.design";
+  // const Host = "http://localhost:5000";
 
   function urlBase64ToUint8Array(base64String) {
     const padding = '='.repeat((4 - base64String.length % 4) % 4);
