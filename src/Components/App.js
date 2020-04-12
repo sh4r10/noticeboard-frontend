@@ -31,7 +31,7 @@ function App(props) {
   
   const subscribe = async () => {
     console.log("Registering service");
-    const register = await navigator.serviceWorker.register('../serviceWorker.js', {
+    const register = await navigator.serviceWorker.register(`${process.env.PUBLIC_URL}/serviceWorker.js`, {
       scope: "/"
     });
     console.log("serviceWorkerRegistered");
