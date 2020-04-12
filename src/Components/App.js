@@ -14,10 +14,43 @@ function App(props) {
   // const Host = "https://backend.sh4r10.design";
   const Host = "http://localhost:5000";
 
+  function urlBase64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding)
+      .replace(/-/g, '+')
+      .replace(/_/g, '/');
+  
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+  
+    for (let i = 0; i < rawData.length; ++i) {
+      outputArray[i] = rawData.charCodeAt(i);
+    }
+    return outputArray;
+  }
+  
+  const subscribe = async () => {
+    const publicVapidKey = "BGZpPKao_Ys-a6IwmeITyD5j2oqH3Oc74c3BbaEOeJ94Lm7pusHcepolWmrkWBJ9pVWuO0J6hCJ4-41uqbA79nQ";
+    let sw = await navigator.serviceWorker.ready;
+    let push = await sw.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
+      })
+    await fetch(Host+"/subscribe",{
+      method: "POST",
+      body: JSON.stringify(push),
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+      console.log(JSON.stringify(push));
+  }
+
+  
   return (
     <Router>
       {loggedIn ? <Navbar /> : null}
-      <button onClick={props.subscribe}>Notifications on!</button>
+      <button onClick={subscribe}>Notifications on!</button>
       <div className="container">
         <Route path="/" exact render={() => <NotesView host={Host} loggedIn={loggedIn}/>}/>
         <Route path="/login" exact render={()=> <Login host={Host} setLogin={setLogin}/>}/>
