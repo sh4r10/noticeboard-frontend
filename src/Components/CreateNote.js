@@ -10,6 +10,10 @@ class CreateNote extends Component{
         }
     }
 
+    componentDidMount(){
+        
+    }
+
     onChangeHeading = e => {
         this.setState({
             heading: e.target.value

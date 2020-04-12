@@ -11,11 +11,22 @@ import EditNote from "./EditNote";
 
 function App() {
   const [loggedIn, setLogin] = useState(sessionStorage.getItem("token") ? true : false);
-  const Host = "https://backend.sh4r10.design";
+  // const Host = "https://backend.sh4r10.design";
+  const Host = "http://localhost:5000";
+
+  const subscribe = async () => {
+    let sw = await navigator.serviceWorker.ready;
+    let push = await sw.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: "BGZpPKao_Ys-a6IwmeITyD5j2oqH3Oc74c3BbaEOeJ94Lm7pusHcepolWmrkWBJ9pVWuO0J6hCJ4-41uqbA79nQ"
+    })
+    console.log(JSON.stringify(push));
+  }
 
   return (
     <Router>
       {loggedIn ? <Navbar /> : null}
+      <button onClick={subscribe}>Notifications on!</button>
       <div className="container">
         <Route path="/" exact render={() => <NotesView host={Host} loggedIn={loggedIn}/>}/>
         <Route path="/login" exact render={()=> <Login host={Host} setLogin={setLogin}/>}/>
