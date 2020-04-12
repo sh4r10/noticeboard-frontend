@@ -3,7 +3,7 @@ self.addEventListener('push', async function(event) {
   const data = event.data.json();
   console.log(data);
   const title = data.title;
-  const body = data.title;
+  const body = data.message;
   const icon = `./mb-logo.png`;
 
   event.waitUntil(
