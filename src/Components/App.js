@@ -30,11 +30,9 @@ function App(props) {
   }
   
   const subscribe = async () => {
-    console.log("Registering service");
     const register = await navigator.serviceWorker.register(`${process.env.PUBLIC_URL}/serviceWorker.js`, {
       scope: "/"
     });
-    console.log("serviceWorkerRegistered");
     const publicVapidKey = "BGZpPKao_Ys-a6IwmeITyD5j2oqH3Oc74c3BbaEOeJ94Lm7pusHcepolWmrkWBJ9pVWuO0J6hCJ4-41uqbA79nQ";
     let sw = await navigator.serviceWorker.ready;
     let push = await sw.pushManager.subscribe({
@@ -50,7 +48,7 @@ function App(props) {
     })
       localStorage.setItem("subbed", "yes");
       setSub(true);
-      console.log(JSON.stringify(push));
+      window.location = "/";
   }
 
   

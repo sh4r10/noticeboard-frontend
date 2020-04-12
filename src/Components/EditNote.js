@@ -17,7 +17,6 @@ class CreateNote extends Component{
         this.setState({id: id});
         axios.get(this.props.host+"/notes/"+id)
             .then(res => {
-                console.log(res);
                 this.setState({
                     heading: res.data.heading,
                     description: res.data.message
@@ -68,7 +67,6 @@ class CreateNote extends Component{
         };
         axios.delete(this.props.host + "/notes/"+id, config)
             .then((res) => {
-                console.log(res)
                 window.location = "/"
             })
             .catch((err) => {

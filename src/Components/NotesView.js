@@ -16,7 +16,6 @@ class NotesView extends Component{
     }
 
     render(){
-        console.log(this.state.note);
         const noteComponents = this.state.notes.reverse().map(note=>{
             return <Note loggedIn={this.props.loggedIn} note={note} key={note._id}/>
         })
