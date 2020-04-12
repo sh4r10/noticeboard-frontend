@@ -11,8 +11,8 @@ import EditNote from "./EditNote";
 
 function App(props) {
   const [loggedIn, setLogin] = useState(sessionStorage.getItem("token") ? true : false);
-  const Host = "https://backend.sh4r10.design";
-  // const Host = "http://localhost:5000";
+  const [subscribed, setSub] = useState(localStorage.getItem("subbed") ? true : false);
+  const Host = "http://localhost:5000";
 
   function urlBase64ToUint8Array(base64String) {
     const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -43,6 +43,8 @@ function App(props) {
         'content-type': 'application/json'
       }
     })
+      localStorage.setItem("subbed", "yes");
+      setSub(true);
       console.log(JSON.stringify(push));
   }
 
@@ -50,7 +52,7 @@ function App(props) {
   return (
     <Router>
       {loggedIn ? <Navbar /> : null}
-      <button onClick={subscribe}>Notifications on!</button>
+      {!subscribed ? <button onClick={subscribe}>Notifications on!</button> : null}
       <div className="container">
         <Route path="/" exact render={() => <NotesView host={Host} loggedIn={loggedIn}/>}/>
         <Route path="/login" exact render={()=> <Login host={Host} setLogin={setLogin}/>}/>
