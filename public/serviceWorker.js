@@ -4,7 +4,7 @@ self.addEventListener('push', async function(event) {
   console.log(data);
   const title = data.title;
   const body = data.title;
-  const icon = `${process.env.PUBLIC_URL}/mb-logo.png`;
+  const icon = `./mb-logo.png`;
 
   event.waitUntil(
     self.registration.showNotification(title, {
