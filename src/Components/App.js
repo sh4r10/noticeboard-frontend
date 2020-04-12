@@ -18,7 +18,7 @@ function App() {
       {loggedIn ? <Navbar /> : null}
       <div className="container">
         <Route path="/" exact render={() => <NotesView host={Host} loggedIn={loggedIn}/>}/>
-        <Route path="/login" exact render={()=> <Login setLogin={setLogin}/>}/>
+        <Route path="/login" exact render={()=> <Login host={Host} setLogin={setLogin}/>}/>
         <Route path="/create" exact render={()=> <CreateNote setLogin={setLogin} host={Host}/>}/>
         <Route path="/edit/:id" render={()=> <EditNote setLogin={setLogin} host={Host}/>}/>
       </div>

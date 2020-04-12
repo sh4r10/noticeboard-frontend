@@ -28,7 +28,7 @@ class Login extends Component{
             "email": this.state.email,
             "password": this.state.password
         }
-        axios.post("http://localhost:5000/login", data)
+        axios.post(this.props.host+"/login", data)
         .then((res) => {
                 sessionStorage.setItem("token", res.data.accessToken)
                 if(res.data.accessToken){
