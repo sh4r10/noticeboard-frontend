@@ -12,7 +12,7 @@ import EditNote from "./EditNote";
 function App(props) {
   const [loggedIn, setLogin] = useState(sessionStorage.getItem("token") ? true : false);
   const [subscribed, setSub] = useState(localStorage.getItem("subbed") ? true : false);
-  const Host = "http://localhost:4000";
+  const Host = "http://localhost:4000 ";
 
   function urlBase64ToUint8Array(base64String) {
     const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -30,6 +30,11 @@ function App(props) {
   }
   
   const subscribe = async () => {
+    console.log("Registering service");
+    const register = await navigator.serviceWorker.register('../serviceWorker.js', {
+      scope: "/"
+    });
+    console.log("serviceWorkerRegistered");
     const publicVapidKey = "BGZpPKao_Ys-a6IwmeITyD5j2oqH3Oc74c3BbaEOeJ94Lm7pusHcepolWmrkWBJ9pVWuO0J6hCJ4-41uqbA79nQ";
     let sw = await navigator.serviceWorker.ready;
     let push = await sw.pushManager.subscribe({
