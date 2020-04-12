@@ -10,17 +10,12 @@
 // })
 
 self.addEventListener('push', function(event) {
-    console.log('Received a push message', event);
-  
-    var title = 'hoopla.';
-    var body = 'We have received a push message.';
-    var icon = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png';
-    var tag = 'simple-push-demo-notification-tag';
-  
-    event.waitUntil(
-      self.registration.showNotification(title, {
-        body: body,
-        icon: icon,
-      })
-    );
+    navigator.serviceWorker.ready.then(function(registration) {
+        registration.showNotification('Vibration Sample', {
+          body: 'Buzz! Buzz!',
+          icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png',
+          vibrate: [200, 100, 200, 100, 200, 100, 200],
+          tag: 'vibration-sample'
+        });
+    });
   });
