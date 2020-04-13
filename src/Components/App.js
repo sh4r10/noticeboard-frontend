@@ -51,6 +51,14 @@ function App(props) {
       window.location = "/";
   }
 
+  const clearStorage = () => {
+    localStorage.removeItem("subbed");
+    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+      for(let registration of registrations) {
+       registration.unregister()
+     } });
+  }
+
   
   return (
     <Router>
@@ -62,7 +70,7 @@ function App(props) {
         <Route path="/create" exact render={()=> <CreateNote setLogin={setLogin} host={Host}/>}/>
         <Route path="/edit/:id" render={()=> <EditNote setLogin={setLogin} host={Host}/>}/>
       </div>
-      <footer><p>Created By <a href="https://github.com/sh4r10" rel="noopener noreferrer" target="_blank">sh4r10</a>. All Rights Reserved.</p></footer>
+      <footer><p>Created By <a href="https://github.com/sh4r10" rel="noopener noreferrer" target="_blank">sh4r10</a>. All Rights <span onDoubleClick={clearStorage}>Reserved.</span></p></footer>
     </Router>
   );
 }
